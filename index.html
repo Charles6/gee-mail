@@ -3,16 +3,69 @@
 		<script src="js/mail-generator.js"></script>
 		<link href="css/style.css" rel="stylesheet" media="screen">
     <script>
-      window.onload = function(){
+    window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        
-      };
+
+       /*
+        function test () {
+            for (var i = 0; i < 10; i++) {
+                document.getElementById('message').appendChild("tester1");
+            }
+        };
+        */
+
+
+
+
+        var div = document.createElement('div');
+        div.id = "nav";
+        document.body.appendChild(div);
+
+        var sync = document.createElement('button');
+        sync.innerHTML = "sync2server";
+        sync.addEventListener("click", server);
+        document.getElementById("nav").appendChild(sync);
+
+        var div = document.createElement('div');
+        div.innerHTML = "inbox";
+        div.id = "menu";
+        document.body.appendChild(div);
+
+        var div = document.createElement('div');
+        div.innerHTML = "<ol></ol>";
+        div.id = "message";
+        document.body.appendChild(div);
+
+        function server () {
+        	//for (var i = 0; i < 5; i++) {
+        		var div = document.createElement('div');
+        		div.innerHTML = "<li>"+"<input type=checkbox>"+getRandomDate()+" "+getRandomElement(subject)+"</li>";
+        		document.getElementById('message').appendChild(div);
+                var div = document.createElement('div');
+                div.innerHTML = "<li>"+"<input type=checkbox>"+getRandomDate()+" "+getRandomElement(subject)+"</li>";
+                document.getElementById('message').appendChild(div);
+                var div = document.createElement('div');
+                div.innerHTML = "<li>"+"<input type=checkbox>"+getRandomDate()+" "+getRandomElement(subject)+"</li>";
+                document.getElementById('message').appendChild(div);
+                var div = document.createElement('div');
+                div.innerHTML = "<li>"+"<input type=checkbox>"+getRandomDate()+" "+getRandomElement(subject)+"</li>";
+                document.getElementById('message').appendChild(div);
+                var div = document.createElement('div');
+                div.innerHTML = "<li>"+"<input type=checkbox>"+getRandomDate()+" "+getRandomElement(subject)+"</li>";
+                document.getElementById('message').appendChild(div);
+                return;
+        	//};
+        };
+
+
+              //test();  
+    };
     </script>
 	</head>
 	<body>
 		<div class="container" id="main">
-			Build Me!
+			
 		</div>
 	</body>
 </html>

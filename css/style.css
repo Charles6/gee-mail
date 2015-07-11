@@ -1,0 +1,18 @@
+#nav {
+	background-color: blue;
+	height: 50px;
+}
+
+#main {
+	background-color: red;
+}
+#menu {
+	padding-left: 50px;
+	float: left;
+	width: 200px;
+	background-color: yellow;
+}
+#message{
+	float: left;
+	background-color: white;
+}
