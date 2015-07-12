@@ -11,7 +11,7 @@ var body = ['I am never gonna see a merman, ever. You haven\'t seen my drawer of
 function loadGeeMails(){
 	for (var i = 0; i < 10; i++){
 		var message = generateMessage();
-		window.geemails.push(message);
+		geemails.push(message);
 	}
 }
 
@@ -34,7 +34,7 @@ function getNewMessage(){
 }
 
 function getRandomDate(){
-	var year = 2013;
+	var year = 2015;
 	var month = Math.floor(Math.random() * 12) + 1;
 	var day = Math.floor(Math.random() * 30) + 1;
 	var hours = Math.floor(Math.random() * 12) + 1;
@@ -43,7 +43,13 @@ function getRandomDate(){
 }
 
 //load intial GeeMail data to window object
-(function(){
-	window.geemails = [];
-	loadGeeMails();	
-})();
+
+/*
+function test(){
+	var geemails = [];
+	loadGeeMails();
+	var div = document.createElement('div');
+    div.innerHTML = geemails[0];
+    document.getElementById('mail').appendChild(div);
+}
+*/

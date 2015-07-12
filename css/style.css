@@ -1,6 +1,16 @@
+body {
+	font-family: sans-serif;
+
+}
+
 #nav {
 	background-color: blue;
 	height: 50px;
+}
+#sync {
+	width: 100px;
+	height: 20px;
+	background-color: white;
 }
 
 #main {
@@ -10,9 +20,13 @@
 	padding-left: 50px;
 	float: left;
 	width: 200px;
+	height: 500px;
 	background-color: yellow;
 }
-#message{
+#mail{
 	float: left;
+	width: 600px;
 	background-color: white;
+	border: 3px solid #000000;
+	word-wrap; break-word;
 }

@@ -7,25 +7,22 @@
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
 
-       /*
-        function test () {
-            for (var i = 0; i < 10; i++) {
-                document.getElementById('message').appendChild("tester1");
-            }
-        };
-        */
-
-
-
 
         var div = document.createElement('div');
         div.id = "nav";
         document.body.appendChild(div);
 
-        var sync = document.createElement('button');
-        sync.innerHTML = "sync2server";
-        sync.addEventListener("click", server);
-        document.getElementById("nav").appendChild(sync);
+        var div = document.createElement('button');
+        div.innerHTML = "sync2server";
+        div.id = "sync"
+        div.addEventListener("click", test);
+        document.getElementById("nav").appendChild(div);
+
+        var div = document.createElement('button');
+        div.innerHTML = "show message";
+        div.id = "sync"
+        div.addEventListener("click", display);
+        document.getElementById("nav").appendChild(div);
 
         var div = document.createElement('div');
         div.innerHTML = "inbox";
@@ -34,32 +31,91 @@
 
         var div = document.createElement('div');
         div.innerHTML = "<ol></ol>";
-        div.id = "message";
+        div.id = "mail";
         document.body.appendChild(div);
 
+        function add(number, date, subject, sender, bodyText) {
+            this.number = number;
+            this.date = date;
+            this.subject = subject;
+            this.sender = sender;
+            this.bodyText = bodyText;
+            return;
+        }
+
+        var messageStorage = [];
+        n=0;
+        function test () {
+            n++;
+            messageStorage[messageStorage.length] = new add(n,getRandomDate(), getRandomElement(subject),getRandomElement(sender),getRandomElement(body));
+            console.log(messageStorage[n-1]);
+            //console.log(display(messageStorage[n-1]));
+            var div = document.createElement('div');
+            div.innerHTML = "<li>"+"<input type=checkbox>"+"<b>"+messageStorage[n-1].sender+"</b>"+" "+messageStorage[n-1].subject+"</li>";
+            document.getElementById('mail').appendChild(div);
+            return;
+        }
+
+        function display () {
+            document.getElementById('mail').innerHTML= 
+                messageStorage[n-1].number + "<br>" +
+                "<i>" + messageStorage[n-1].date + "</i>" + "<br>" +
+                messageStorage[n-1].sender + "<br>" +
+                "<b>" + messageStorage[n-1].subject + "</b>" + "<br>" +
+                messageStorage[n-1].bodyText;
+            var div = document.createElement('button');
+            div.innerHTML = "Back";
+            div.id = "back"
+            div.addEventListener("click", back2inbox);
+            document.getElementById("mail").appendChild(div);
+                function back2inbox () {
+                    document.getElementById('mail').innerHTML="";
+                }
+        }
+
+
+
         function server () {
+                //var div = document.createElement('div');
+                //loadGeeMails();
+                //console.log(geemails);
+                //document.getElementById('message').appendChild(div);
+
         	//for (var i = 0; i < 5; i++) {
-        		var div = document.createElement('div');
+
+/*
+                var div = document.createElement('div');
         		div.innerHTML = "<li>"+"<input type=checkbox>"+getRandomDate()+" "+getRandomElement(subject)+"</li>";
-        		document.getElementById('message').appendChild(div);
+        		document.getElementById('mail').appendChild(div);
                 var div = document.createElement('div');
                 div.innerHTML = "<li>"+"<input type=checkbox>"+getRandomDate()+" "+getRandomElement(subject)+"</li>";
-                document.getElementById('message').appendChild(div);
+                document.getElementById('mail').appendChild(div);
                 var div = document.createElement('div');
                 div.innerHTML = "<li>"+"<input type=checkbox>"+getRandomDate()+" "+getRandomElement(subject)+"</li>";
-                document.getElementById('message').appendChild(div);
+                document.getElementById('mail').appendChild(div);
                 var div = document.createElement('div');
                 div.innerHTML = "<li>"+"<input type=checkbox>"+getRandomDate()+" "+getRandomElement(subject)+"</li>";
-                document.getElementById('message').appendChild(div);
+                document.getElementById('mail').appendChild(div);
                 var div = document.createElement('div');
                 div.innerHTML = "<li>"+"<input type=checkbox>"+getRandomDate()+" "+getRandomElement(subject)+"</li>";
-                document.getElementById('message').appendChild(div);
+                document.getElementById('mail').appendChild(div);
+*/
                 return;
         	//};
-        };
 
 
-              //test();  
+
+
+
+        }; 
+
+
+
+
+
+
+
+
     };
     </script>
 	</head>
