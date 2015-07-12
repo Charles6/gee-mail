@@ -14,23 +14,30 @@
 
         var div = document.createElement('button');
         div.innerHTML = "sync2server";
-        div.id = "sync"
-        div.addEventListener("click", test);
+        div.id = "input";
+        div.addEventListener("click", server);
+        document.getElementById("nav").appendChild(div);
+
+        var div = document.createElement('button');
+        div.innerHTML = "show inbox";
+        div.id = "input";
+        div.addEventListener("click", inbox);
         document.getElementById("nav").appendChild(div);
 
         var div = document.createElement('button');
         div.innerHTML = "show message";
-        div.id = "sync"
+        div.id = "input";
         div.addEventListener("click", display);
         document.getElementById("nav").appendChild(div);
 
-        var div = document.createElement('div');
-        div.innerHTML = "inbox";
-        div.id = "menu";
-        document.body.appendChild(div);
+        var div = document.createElement('input');
+        div.type = "number";
+        div.id = "input"
+        div.id = "select";
+        document.getElementById("nav").appendChild(div);
 
         var div = document.createElement('div');
-        div.innerHTML = "<ol></ol>";
+        div.innerHTML = "";
         div.id = "mail";
         document.body.appendChild(div);
 
@@ -44,78 +51,68 @@
         }
 
         var messageStorage = [];
-        n=0;
-        function test () {
-            n++;
-            messageStorage[messageStorage.length] = new add(n,getRandomDate(), getRandomElement(subject),getRandomElement(sender),getRandomElement(body));
-            console.log(messageStorage[n-1]);
-            //console.log(display(messageStorage[n-1]));
+        n=-1;
+        x=0;
+        d=0;
+        s=0;
+
+        function clearTest () {
+            if (x == 0) {
+                document.getElementById('mail').innerHTML="";
+                x=1;
+            } else if (d == 1) {
+                inbox();
+                d=0;
+            }
+        }
+
+        function inboxPreview(elem) {
             var div = document.createElement('div');
-            div.innerHTML = "<li>"+"<input type=checkbox>"+"<b>"+messageStorage[n-1].sender+"</b>"+" "+messageStorage[n-1].subject+"</li>";
+            div.innerHTML = messageStorage[elem].number+": <b>From: </b>"+messageStorage[elem].sender+" <b>Subject: </b>"+messageStorage[elem].subject;
             document.getElementById('mail').appendChild(div);
+        }
+
+        function server () {
+            n++;
+            clearTest();
+            messageStorage[messageStorage.length] = new add(n,getRandomDate(), getRandomElement(subject),getRandomElement(sender),getRandomElement(body));
+            inboxPreview(n);
             return;
         }
 
-        function display () {
-            document.getElementById('mail').innerHTML= 
-                messageStorage[n-1].number + "<br>" +
-                "<i>" + messageStorage[n-1].date + "</i>" + "<br>" +
-                messageStorage[n-1].sender + "<br>" +
-                "<b>" + messageStorage[n-1].subject + "</b>" + "<br>" +
-                messageStorage[n-1].bodyText;
-            var div = document.createElement('button');
-            div.innerHTML = "Back";
-            div.id = "back"
-            div.addEventListener("click", back2inbox);
-            document.getElementById("mail").appendChild(div);
-                function back2inbox () {
-                    document.getElementById('mail').innerHTML="";
+        function inbox () {
+            if (x==0) {
+                document.getElementById('mail').innerHTML="No Mail";
+            } else {
+                document.getElementById('mail').innerHTML="";
+                for (var i = 0; i <= messageStorage.length-1; i++) {
+                    inboxPreview(i);
                 }
+            }
         }
 
-
-
-        function server () {
-                //var div = document.createElement('div');
-                //loadGeeMails();
-                //console.log(geemails);
-                //document.getElementById('message').appendChild(div);
-
-        	//for (var i = 0; i < 5; i++) {
-
-/*
-                var div = document.createElement('div');
-        		div.innerHTML = "<li>"+"<input type=checkbox>"+getRandomDate()+" "+getRandomElement(subject)+"</li>";
-        		document.getElementById('mail').appendChild(div);
-                var div = document.createElement('div');
-                div.innerHTML = "<li>"+"<input type=checkbox>"+getRandomDate()+" "+getRandomElement(subject)+"</li>";
-                document.getElementById('mail').appendChild(div);
-                var div = document.createElement('div');
-                div.innerHTML = "<li>"+"<input type=checkbox>"+getRandomDate()+" "+getRandomElement(subject)+"</li>";
-                document.getElementById('mail').appendChild(div);
-                var div = document.createElement('div');
-                div.innerHTML = "<li>"+"<input type=checkbox>"+getRandomDate()+" "+getRandomElement(subject)+"</li>";
-                document.getElementById('mail').appendChild(div);
-                var div = document.createElement('div');
-                div.innerHTML = "<li>"+"<input type=checkbox>"+getRandomDate()+" "+getRandomElement(subject)+"</li>";
-                document.getElementById('mail').appendChild(div);
-*/
-                return;
-        	//};
-
-
-
-
-
-        }; 
-
-
-
-
-
-
-
-
+        function display () {
+            if (x==0) {
+                document.getElementById('mail').innerHTML="No Mail";
+            } else {
+                d=1;
+                var s = document.getElementById("select").value;
+                if (s <= n && s >= 0) {
+                    document.getElementById('mail').innerHTML="";
+                    document.getElementById('mail').innerHTML= 
+                        "<b>Message Number: </b>" + messageStorage[s].number + "<br>" +
+                        "<b>Date: </b>" + "<i>" + messageStorage[s].date + "</i>" + "<br>" +
+                        "<b>Sender: </b>" + messageStorage[s].sender + "<br>" +
+                        "<b>Subject: </b>" + messageStorage[s].subject + "<br>" +
+                        messageStorage[s].bodyText;
+                    return;     
+                } else if (s === NaN) {
+                    document.getElementById('mail').innerHTML="Please Enter a Message Value.";
+                } else {
+                    document.getElementById('mail').innerHTML="No Messages of that Value.";
+                }
+            }
+        }
     };
     </script>
 	</head>
