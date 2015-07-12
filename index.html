@@ -55,6 +55,7 @@
         x=0;
         d=0;
         s=0;
+        m=0;
 
         function clearTest () {
             if (x == 0) {
@@ -72,12 +73,18 @@
             document.getElementById('mail').appendChild(div);
         }
 
+        function newMessage () {
+                messageStorage[messageStorage.length] = new add(n,getRandomDate(), getRandomElement(subject),getRandomElement(sender),getRandomElement(body));
+                inboxPreview(n);
+        }        
+
         function server () {
-            n++;
             clearTest();
-            messageStorage[messageStorage.length] = new add(n,getRandomDate(), getRandomElement(subject),getRandomElement(sender),getRandomElement(body));
-            inboxPreview(n);
-            return;
+            var r = Math.floor(Math.random() * 6);
+            for (var m = 0; m <= r; m++) {
+                n++;
+                newMessage(m);
+            }
         }
 
         function inbox () {
