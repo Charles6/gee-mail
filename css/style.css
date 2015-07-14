@@ -29,3 +29,12 @@ body {
 	width: 800px;
 	word-wrap; break-word;
 }
+
+#mailline{
+	padding-left: 50px;
+}
+
+#mailline:hover {
+	background-color: green;
+	color: white;
+}
