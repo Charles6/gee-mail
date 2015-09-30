@@ -71,7 +71,6 @@
             var div = document.createElement('div');
             div.innerHTML = messageStorage[elem].number+": <b>From: </b>"+messageStorage[elem].sender+" <b>Subject: </b>"+messageStorage[elem].subject;
             div.onclick = function() {
-                console.log(elem);
                 d=1;
                 displayMail(elem);
             };
